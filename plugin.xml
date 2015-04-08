@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+            id="com.cameraPlugin" version="1.0">
+        <name>CameraCanvas</name>
+        <description>Cordova Camera Plugin</description>
+        <license>Apache 2.0</license>
+        <keywords>cordova</keywords>
+        <js-module src="www/camera.js" name="camera">
+            <clobbers target="camera" />
+        </js-module>
+        <platform name="android">
+        <config-file target="config.xml" parent="/*">
+            <feature name="CameraCanvas">
+                <param name="android-package" value="com.cameraPlugin.CameraCanvas"/>
+            </feature>
+        </config-file>
+    	</platform>
+    </plugin>
