@@ -85,17 +85,17 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
         super.onCreate(savedInstanceState);
         setContentView(getResources().getIdentifier("canvascamera", "layout", getPackageName()));
 
-        _quality = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getInt(CanvasCamera.QUALITY , 85);
-        _destType = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getInt(CanvasCamera.DESTTYPE , DestinationTypeFileURI);
-        _allowEdit = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean(CanvasCamera.ALLOWEDIT, false);
-        _encodeType = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getInt(CanvasCamera.ENCODETYPE, EncodingTypeJPEG);
-        _saveToPhotoAlbum = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean(CanvasCamera.SAVETOPHOTOALBUM, false);
-        _correctOrientation = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean(CanvasCamera.CORRECTORIENTATION, true);
-        _width = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getInt(CanvasCamera.WIDTH , 200);
-        _height = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getInt(CanvasCamera.HEIGHT , 180);
+        _quality = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getInt(CameraCanvas.QUALITY , 85);
+        _destType = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getInt(CameraCanvas.DESTTYPE , DestinationTypeFileURI);
+        _allowEdit = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean(CameraCanvas.ALLOWEDIT, false);
+        _encodeType = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getInt(CameraCanvas.ENCODETYPE, EncodingTypeJPEG);
+        _saveToPhotoAlbum = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean(CameraCanvas.SAVETOPHOTOALBUM, false);
+        _correctOrientation = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean(CameraCanvas.CORRECTORIENTATION, true);
+        _width = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getInt(CameraCanvas.WIDTH , 200);
+        _height = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getInt(CameraCanvas.HEIGHT , 180);
 
-        bFlash = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean(CanvasCamera.FLASH, false);
-        bRevert = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean(CanvasCamera.REVERT, false);
+        bFlash = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean(CameraCanvas.FLASH, false);
+        bRevert = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean(CameraCanvas.REVERT, false);
         
         getControlVariables();
         initializeUI();
@@ -170,7 +170,7 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
             if (m_camera == null || !bRevert)
                 return;
 
-            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(CanvasCameraView.this).edit();
+            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(CameraCanvasView.this).edit();
 
             Parameters p = m_camera.getParameters();
 
@@ -179,14 +179,14 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
                 p.setFlashMode(Parameters.FLASH_MODE_OFF);
                 m_imgFlash.setImageResource(getResources().getIdentifier("video_sprites_focus", "drawable", getPackageName()));
 
-                editor.putBoolean(CanvasCamera.FLASH, false);
+                editor.putBoolean(CameraCanvas.FLASH, false);
             }
             else
             {
                 p.setFlashMode(Parameters.FLASH_MODE_TORCH);
                 m_imgFlash.setImageResource(getResources().getIdentifier("video_sprites_focus_inactive","drawable", getPackageName()));
 
-                editor.putBoolean(CanvasCamera.FLASH, true);
+                editor.putBoolean(CameraCanvas.FLASH, true);
             }
 
             m_camera.setParameters(p);
@@ -208,18 +208,18 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
                 m_camera = null;
             }
 
-            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(CanvasCameraView.this).edit();
+            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(CameraCanvasView.this).edit();
 
             if (bRevert)
             {
                 m_camera = Camera.open(Camera.CameraInfo.CAMERA_FACING_FRONT);
 
                 m_imgRevert.setImageResource(getResources().getIdentifier("video_sprites_revert_inactive", "drawable", getPackageName()));
-                editor.putBoolean(CanvasCamera.REVERT, false);
+                editor.putBoolean(CameraCanvas.REVERT, false);
 
                 m_imgFlash.setImageResource(getResources().getIdentifier("video_sprites_focus", "drawable", getPackageName()));
                 bFlash = false;
-                editor.putBoolean(CanvasCamera.FLASH, false);
+                editor.putBoolean(CameraCanvas.FLASH, false);
             }
             else
             {
@@ -227,7 +227,7 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
 
                 m_imgRevert.setImageResource(getResources().getIdentifier("video_sprites_revert", "drawable", getPackageName()));
 
-                editor.putBoolean(CanvasCamera.REVERT, true);
+                editor.putBoolean(CameraCanvas.REVERT, true);
             }
 
             bRevert = !bRevert;
@@ -282,7 +282,7 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
             fos.write(data);
             fos.close();
         } catch (Exception e) {
-            Log.d("CanvasCamera", "File " + filename + " not saved: " + e.getMessage());
+            Log.d("CameraCanvas", "File " + filename + " not saved: " + e.getMessage());
         }
         return filename;
     }
@@ -315,7 +315,7 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
                     // save image to album
                     if (_saveToPhotoAlbum)
                     {
-                        MediaStore.Images.Media.insertImage(getContentResolver(), original, "CanvasCamera", "Taked by CanvasCamera");
+                        MediaStore.Images.Media.insertImage(getContentResolver(), original, "CameraCanvas", "Taked by CameraCanvas");
                     }
 
                     JSONObject returnInfo = new JSONObject();
@@ -348,7 +348,7 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
                         return;
                     }
 
-                    CanvasCamera.sharedCanvasCamera.onTakePicture(returnInfo);
+                    CameraCanvas.sharedCameraCanvas.onTakePicture(returnInfo);
                     
                     m_prgDialog.dismiss();
                     
