@@ -132,7 +132,7 @@ public class CameraCanvas extends CordovaPlugin{
        editor.commit();
        
 		Intent intent = new Intent(this.cordova.getActivity(), CameraCanvasView.class);
-		this.cordova.startActivityForResult(this, intent, CANVAS_CAMERA);
+		this.cordova.startActivityForResult(CameraCanvas.this, intent, CANVAS_CAMERA);
    }
    private void getOptions(JSONObject jsonData) throws Exception
    {
@@ -192,7 +192,7 @@ public class CameraCanvas extends CordovaPlugin{
    }
   
    public void onTakePicture(final JSONObject returnInfo)
-	{
+	{ Log.v(null, "in take picture ------------------------");
 		cordova.getThreadPool().execute(new Runnable() 
 		{
            public void run() 
