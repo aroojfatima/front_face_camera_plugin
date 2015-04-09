@@ -43,8 +43,8 @@ cordova.define("cordova/plugin/cameraPluginVar", function(require, exports, modu
             }
         };
         // register orientation change event
-        window.addEventListener('orientationchange', this.doOrientationChange);
-        this.doOrientationChange();
+        //window.addEventListener('orientationchange', this.doOrientationChange);
+        //this.doOrientationChange();
     };
 
   cameraPluginVar.doOrientationChange = function() { 
