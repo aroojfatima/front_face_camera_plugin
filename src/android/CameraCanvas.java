@@ -204,7 +204,7 @@ public class CameraCanvas extends CordovaPlugin{
        		PluginResult result = new PluginResult(PluginResult.Status.OK, returnInfo);
        		result.setKeepCallback(true);
        		canvasCameraCallback.sendPluginResult(result);
-       		canvasCameraCallback.success(returnInfo);
+       		//canvasCameraCallback.success(returnInfo);
           }
 		});
 	}
