@@ -398,26 +398,26 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
             m_saveCameraRotationDegree = m_previewCameraRotationDegree;
         }
         else    // Front Camera
-        { Log.v(null,"hereeeee----------------------");
+        { Log.v(null,"hereeeee----------------------"+display.getRotation());
             if(display.getRotation() == Surface.ROTATION_0 || display.getRotation() == 0)
             {
                 m_previewCameraRotationDegree = 0;
-                m_saveCameraRotationDegree = 90;
+                m_saveCameraRotationDegree = 0;
             }
             else if(display.getRotation() == Surface.ROTATION_90 || display.getRotation() == 3)
             {
                 m_previewCameraRotationDegree = 90;
-                //m_saveCameraRotationDegree = 0;
+                m_saveCameraRotationDegree = 90;
             }
             else if(display.getRotation() == Surface.ROTATION_180 || display.getRotation() == 2)
             {
                 m_previewCameraRotationDegree = 180;
-               // m_saveCameraRotationDegree = 180;
+                m_saveCameraRotationDegree = 180;
             }
             else if(display.getRotation() == Surface.ROTATION_270 || display.getRotation() == 1)
             {
                 m_previewCameraRotationDegree = 270;
-                //m_saveCameraRotationDegree = 180;
+                m_saveCameraRotationDegree = 270;
             }
         }
     }
