@@ -3,6 +3,8 @@ Front-Face Camera Plugin
 
 Cordova Front-Face camera plugin for Android, supports camera preview and taking photos.
 
+Note: Plug-in has been customised using base code from https://github.com/donaldp24/CanvasCameraPlugin.git 
+
 ### Plugin's Purpose
 The purpose of the plugin is to capture video to preview front face camera and to take photos with user defined quality / dimension.
 
@@ -10,6 +12,9 @@ The purpose of the plugin is to capture video to preview front face camera and t
 ## Supported Platforms
 
 - **Android**<br>
+
+currently it only supports Android with minimal settings for front-face camera.
+
 
 ## Dependencies
 [Cordova][cordova] will check all dependencies and install them if they are missing.
