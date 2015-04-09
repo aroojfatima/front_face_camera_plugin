@@ -205,7 +205,7 @@ public class CameraCanvas extends CordovaPlugin{
 	}
    public void onActivityResult(int requestCode, int resultCode, Intent intent) 
 	{
-		if (resultCode == Activity.RESULT_OK) 
+		/*if (resultCode == Activity.RESULT_OK) 
 		{
 			if (requestCode == CANVAS_CAMERA) 
 			{
@@ -224,8 +224,16 @@ public class CameraCanvas extends CordovaPlugin{
 	    			});
 	        		
 		        }
-			}
-		}
+			}*/
+	   cordova.getThreadPool().execute(new Runnable() 
+		{
+           public void run() 
+           {
+       		canvasCameraCallback.success();
+           }
+		});
+		
+		
 	}
 
 }
