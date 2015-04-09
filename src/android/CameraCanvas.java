@@ -138,7 +138,7 @@ public class CameraCanvas extends CordovaPlugin{
        editor.commit();
        
 		Intent intent = new Intent(this.cordova.getActivity(), CameraCanvasView.class);
-		this.cordova.startActivityForResult((CordovaPlugin)this, intent, CANVAS_CAMERA);
+		this.cordova.startActivityForResult((CordovaPlugin)this, intent, 2);
    }
    private void getOptions(JSONObject jsonData) throws Exception
    {
@@ -213,10 +213,11 @@ public class CameraCanvas extends CordovaPlugin{
 	{
 		if (resultCode == Activity.RESULT_OK) 
 		{
-    		canvasCameraCallback.success();
 
-			if (requestCode == CANVAS_CAMERA) 
+			if (requestCode == 2) 
 			{
+				this.canvasCameraCallback.success("test dta");
+
 		        /*if (intent == null)
 		        {
 		        	canvasCameraCallback.sendPluginResult(new PluginResult(PluginResult.Status.ERROR, "Error: data is null"));
