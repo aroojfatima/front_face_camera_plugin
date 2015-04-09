@@ -218,32 +218,5 @@ document.addEventListener('deviceready', function () {
     <h1>Test it</h1>
         <canvas id="camera" width="352" height="288" style="border:2px"></canvas>
     </body>
-</html>```
-
-## Contributing
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
-
-
-## License
-
-This software is released under the [Apache 2.0 License][apache2_license].
-
-© 2013-2014 Snaphappi, Inc. All rights reserved
-
-[ctassetspickercontroller]: https://github.com/chiunam/CTAssetsPickerController
-[cordova-plugin-local-notifications]: https://github.com/katzer/cordova-plugin-local-notifications
-[cordova]: https://cordova.apache.org
-[PGB_plugin]: https://build.phonegap.com/plugins/413
-[onsuccess]: #onSuccess
-[oncancel]: #onCancel
-[options]: #options
-[getById]: #getById
-[ongetbyid]: #onGetById
-[CLI]: http://cordova.apache.org/docs/en/3.0.0/guide_cli_index.md.html#The%20Command-line%20Interface
-[PGB]: http://docs.build.phonegap.com/en_US/3.3.0/index.html
-[apache2_license]: http://opensource.org/licenses/Apache-2.0
+</html>
+```
