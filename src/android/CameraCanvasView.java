@@ -100,7 +100,7 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
         getControlVariables();
         initializeUI();
 
-       setCameraRotationDegree();
+       //setCameraRotationDegree();
     }
 
     @Override
@@ -146,7 +146,7 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
 
     private void initializeUI()
     {
-        if (bFlash)
+       /* if (bFlash)
             m_imgFlash.setImageResource(getResources().getIdentifier("video_sprites_focus_inactive", "drawable", getPackageName()));
         else
             m_imgFlash.setImageResource(getResources().getIdentifier("video_sprites_focus", "drawable", getPackageName()));
@@ -158,12 +158,12 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
 
         m_imgFlash.setOnClickListener(flashClickListener);
 
-        m_imgRevert.setOnClickListener(revertClickListener);
+        m_imgRevert.setOnClickListener(revertClickListener); */
         m_imgCapture.setOnClickListener(captureClickListener);
         m_imgClose.setOnClickListener(closeClickListener);
     }
 
-    private View.OnClickListener flashClickListener = new View.OnClickListener() {
+  /*  private View.OnClickListener flashClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
 
@@ -252,7 +252,7 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
             }
         }
     };
-
+*/
     public static Bitmap rotate(Bitmap bitmap, int degree) {
         int w = bitmap.getWidth();
         int h = bitmap.getHeight();
@@ -486,28 +486,4 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
             bPreviewRunning = false;
         }
     }
-  /*  public Bitmap getRotatedBitmap(int rotate, Bitmap bitmap, ExifHelper exif) {
-        Matrix matrix = new Matrix();
-        if (rotate == 180) {
-            matrix.setRotate(rotate);
-        } else {
-            matrix.setRotate(rotate, (float) bitmap.getWidth() / 2, (float) bitmap.getHeight() / 2);
-        }
-
-        try
-        {
-            bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
-            exif.resetOrientation();
-        }
-        catch (OutOfMemoryError oom)
-        {
-            // You can run out of memory if the image is very large:
-            // http://simonmacdonald.blogspot.ca/2012/07/change-to-camera-code-in-phonegap-190.html
-            // If this happens, simply do not rotate the image and return it unmodified.
-            // If you do not catch the OutOfMemoryError, the Android app crashes.
-        }
-
-        return bitmap;
-    } */
-
 }
