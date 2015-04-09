@@ -84,9 +84,10 @@ cordova.define("cordova/plugin/cameraPluginVar", function(require, exports, modu
 	};
 	cameraPluginVar.start = function(option)  
 	{  
-       cordova.exec(false, false, "CameraCanvas", "start", [option]);
+       cordova.exec("onSuccess", "onFail", "CameraCanvas", "start", [option]);
 	};
 	cameraPluginVar.capture = function(data) {
+		alert(data);
         this._camImage.src = data;
     };
 
