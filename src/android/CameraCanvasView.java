@@ -99,7 +99,7 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
         
         getControlVariables();
         initializeUI();
-        setCameraRotationDegree();
+        //setCameraRotationDegree();
     }
 
     @Override
@@ -253,6 +253,7 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
     };
 */
     public static Bitmap rotate(Bitmap bitmap, int degree) {
+    	
         int w = bitmap.getWidth();
         int h = bitmap.getHeight();
 
@@ -300,8 +301,8 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
                     Bitmap original = BitmapFactory.decodeByteArray(data, 0, data.length);
 
                     //_correctOrientation
-                    if (_correctOrientation)
-                        original = rotate(original, m_saveCameraRotationDegree);
+                   // if (_correctOrientation)
+                        //original = rotate(original, m_saveCameraRotationDegree);
 
                     // resize to width x height
                     Bitmap resized = Bitmap.createScaledBitmap(original, _width, _height, true);
