@@ -32,7 +32,8 @@
 				
 				<uses-feature android:name="android.hardware.camera" />
 				<uses-feature android:name="android.hardware.camera.autofocus" />
-				<uses-feature android:name="android.hardware.camera.setParameters" />			
+				<uses-feature android:name="android.hardware.camera.setParameters" />
+				<uses-feature android:name="android.hardware.screen.landscape" />			
         </config-file>
 		<source-file src="src/android/CameraCanvas.java" target-dir="src/com/cameraPlugin/"/>
 		<source-file src="src/android/CameraCanvasView.java" target-dir="src/com/cameraPlugin/"/>
