@@ -71,7 +71,9 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
 
     private int _width = 200;
     private int _height = 180;
-
+    CameraCanvas cc= new CameraCanvas();
+	// Create an ExifHelper to save the exif data that is lost during compression
+	ExifHelper exif = new ExifHelper();
 
     Handler customHandler = new Handler();
 
