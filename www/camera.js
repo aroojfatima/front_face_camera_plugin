@@ -47,7 +47,7 @@ cordova.define("cordova/plugin/cameraPluginVar", function(require, exports, modu
         this.doOrientationChange();
     };
 
-  cameraPluginVar.doOrientationChange = function() {
+  cameraPluginVar.doOrientationChange = function() { alert("here");
         switch(window.orientation)
         {
             case -90:
@@ -86,14 +86,6 @@ cordova.define("cordova/plugin/cameraPluginVar", function(require, exports, modu
 	{  
        cordova.exec("onSuccess", "onFail", "CameraCanvas", "start", [option]);
 	};
-	cameraPluginVar.capture = function(data) {
-		alert(data);
-        this._camImage.src = data;
-    };
-
-	cameraPluginVar.takePicture = function(onsuccess) { alert("here in takePicture js");
-        cordova.exec(onsuccess, function(){}, "CameraCanvas", "onTakePicture", []);
-    };
 
 	module.exports = cameraPluginVar;
 });
