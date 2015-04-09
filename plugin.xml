@@ -2,6 +2,10 @@
     <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
             id="com.cameraPlugin" version="1.0">
         <name>CameraCanvas</name>
+		<engines>
+  		  <engine name="cordova" version=">=3.4.0"/>
+ 	 	</engines>
+
         <description>Cordova Camera Plugin</description>
         <license>Apache 2.0</license>
         <keywords>cordova</keywords>
@@ -9,10 +13,11 @@
             <clobbers target="camera" />
         </js-module>
         <platform name="android">
-        <config-file target="config.xml" parent="/*">
-            <feature name="CameraCanvas">
-                <param name="android-package" value="com.cameraPlugin.CameraCanvas"/>
-            </feature>
-        </config-file>
+			<config-file target="config.xml" parent="/*">
+				<feature name="CameraCanvas">
+					<param name="android-package" value="com.cameraPlugin.CameraCanvas"/>
+				</feature>
+			</config-file>
+		    <source-file src="src/android/CameraCanvas.java" target-dir="src/com/cameraPlugin/"/>
     	</platform>
     </plugin>
