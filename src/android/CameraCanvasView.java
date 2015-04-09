@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.SharedPreferences;
-import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
@@ -97,8 +96,7 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
 
         bFlash = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean(CameraCanvas.FLASH, false);
         bRevert = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean(CameraCanvas.REVERT, false);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-
+        
         getControlVariables();
         initializeUI();
         setCameraRotationDegree();
@@ -405,28 +403,23 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
         { Log.v(null,"hereeeee----------------------"+display.getRotation());
             if(display.getRotation() == 0)
             { Log.v(null,"hereeeee--------------------in 0--"+display.getRotation());
-                //m_previewCameraRotationDegree = 0;
+                m_previewCameraRotationDegree = 0;
                 //m_saveCameraRotationDegree = 0;
-            	setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE); 
-
             }
             else if(display.getRotation() == 3)
             { Log.v(null,"hereeeee------------in 3----------"+display.getRotation());
-               // m_previewCameraRotationDegree = 90;
+                m_previewCameraRotationDegree = 90;
                // m_saveCameraRotationDegree = 90;
-        		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE); 
             }
             else if(display.getRotation() == 2)
             { Log.v(null,"hereeeee--------in 2 --------------"+display.getRotation());
-                //m_previewCameraRotationDegree = 180;
+                m_previewCameraRotationDegree = 180;
                 //m_saveCameraRotationDegree = 180;
-        		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE); 
             }
             else if(display.getRotation() == 1)
             { Log.v(null,"hereeeee---------------------in 1-"+display.getRotation());
-            	//m_previewCameraRotationDegree = 270;
+            	m_previewCameraRotationDegree = 270;
                // m_saveCameraRotationDegree = 180;
-        		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE); 
             }
         }
     }
@@ -476,7 +469,7 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
                     parameters.setFlashMode(Parameters.FLASH_MODE_OFF);
 
                 setCameraRotationDegree();
-                m_camera.setDisplayOrientation(0);
+                m_camera.setDisplayOrientation(m_previewCameraRotationDegree);
 
                 m_camera.setParameters(parameters);
 
