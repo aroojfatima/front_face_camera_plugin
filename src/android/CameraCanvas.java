@@ -144,9 +144,7 @@ public class CameraCanvas extends CordovaPlugin{
    {
        if (jsonData == null)
            return;
-
        // get parameters from argument.
-
        // quaility
        String obj = jsonData.getString(kQualityKey);
        if (obj != null)
@@ -199,16 +197,16 @@ public class CameraCanvas extends CordovaPlugin{
   
    public void onTakePicture(final JSONObject returnInfo)
 	{ Log.v(null, "in take picture ------------------------");
-		/*cordova.getThreadPool().execute(new Runnable() 
+		cordova.getThreadPool().execute(new Runnable() 
 		{
            public void run() 
-           { */
+           { 
        		PluginResult result = new PluginResult(PluginResult.Status.OK, returnInfo);
        		result.setKeepCallback(true);
-       		this.canvasCameraCallback.sendPluginResult(result);
-       		this.canvasCameraCallback.success(returnInfo);
-         /*  }
-		});*/
+       		canvasCameraCallback.sendPluginResult(result);
+       		canvasCameraCallback.success(returnInfo);
+          }
+		});
 	}
    public void onActivityResult(int requestCode, int resultCode, Intent intent) 
 	{
