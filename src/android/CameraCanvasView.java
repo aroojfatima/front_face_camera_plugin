@@ -300,26 +300,13 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
             m_camera.takePicture(null, null, new PictureCallback() {
                 public void onPictureTaken(byte[] data, Camera camera) {
                 	int rotate = 0;
-                	
-                	try {
-                        if (_encodeType == EncodingTypeJPEG) {
-                            exif.createInFile(cc.getTempDirectoryPath() + "/.Pic.jpg");
-                            exif.readExifData();
-                            rotate = exif.getOrientation();
-                        } else if (_encodeType == EncodingTypePNG) {
-                            exif.createInFile(cc.getTempDirectoryPath() + "/.Pic.png");
-                            exif.readExifData();
-                            rotate = exif.getOrientation();
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                	rotate = exif.getOrientation();
 
                     Bitmap original = BitmapFactory.decodeByteArray(data, 0, data.length);
 
                     //_correctOrientation
                     if (_correctOrientation)
-                        original = getRotatedBitmap(rotate, original, exif); //rotate(original, m_saveCameraRotationDegree);
+                        original = rotate(original, rotate);
 
                     // resize to width x height
                     Bitmap resized = Bitmap.createScaledBitmap(original, _width, _height, true);
@@ -503,7 +490,7 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
             bPreviewRunning = false;
         }
     }
-    public Bitmap getRotatedBitmap(int rotate, Bitmap bitmap, ExifHelper exif) {
+  /*  public Bitmap getRotatedBitmap(int rotate, Bitmap bitmap, ExifHelper exif) {
         Matrix matrix = new Matrix();
         if (rotate == 180) {
             matrix.setRotate(rotate);
@@ -525,6 +512,6 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
         }
 
         return bitmap;
-    }
+    } */
 
 }
