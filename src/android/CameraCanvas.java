@@ -87,6 +87,11 @@ public class CameraCanvas extends CordovaPlugin{
        }
        else if (action.equals("start")) {
            this.start(args);
+          
+           PluginResult r = new PluginResult(PluginResult.Status.NO_RESULT);
+           r.setKeepCallback(true);
+           callbackContext.sendPluginResult(r);
+           
            return true;
        }
        return false;
@@ -132,7 +137,7 @@ public class CameraCanvas extends CordovaPlugin{
        editor.commit();
        
 		Intent intent = new Intent(this.cordova.getActivity(), CameraCanvasView.class);
-		this.cordova.startActivityForResult(CameraCanvas.this, intent, CANVAS_CAMERA);
+		this.cordova.startActivityForResult((CordovaPlugin)this, intent, CANVAS_CAMERA);
    }
    private void getOptions(JSONObject jsonData) throws Exception
    {
@@ -199,17 +204,19 @@ public class CameraCanvas extends CordovaPlugin{
            {
        		PluginResult result = new PluginResult(PluginResult.Status.OK, returnInfo);
        		result.setKeepCallback(true);
-       		canvasCameraCallback.sendPluginResult(result);
+       		canvasCameraCallback.success(returnInfo);
            }
 		});
 	}
    public void onActivityResult(int requestCode, int resultCode, Intent intent) 
 	{
-		/*if (resultCode == Activity.RESULT_OK) 
+		if (resultCode == Activity.RESULT_OK) 
 		{
+    		canvasCameraCallback.success();
+
 			if (requestCode == CANVAS_CAMERA) 
 			{
-		        if (intent == null)
+		        /*if (intent == null)
 		        {
 		        	canvasCameraCallback.sendPluginResult(new PluginResult(PluginResult.Status.ERROR, "Error: data is null"));
 		        }
@@ -223,17 +230,18 @@ public class CameraCanvas extends CordovaPlugin{
 	    	            }
 	    			});
 	        		
-		        }
-			}*/
-	   cordova.getThreadPool().execute(new Runnable() 
-		{
-           public void run() 
-           {
-       		canvasCameraCallback.success();
-           }
-		});
-		
+		        }*/
+			}
+		}
 		
 	}
+   /**
+    * Send error message to JavaScript.
+    *
+    * @param err
+    */
+   public void failPicture(String err) {
+       this.canvasCameraCallback.error(err);
+   }
 
 }
