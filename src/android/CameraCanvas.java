@@ -90,7 +90,7 @@ public class CameraCanvas extends CordovaPlugin{
           
            PluginResult r = new PluginResult(PluginResult.Status.NO_RESULT);
            r.setKeepCallback(true);
-           this.canvasCameraCallback.sendPluginResult(r);
+           //this.canvasCameraCallback.sendPluginResult(r);
           // this.canvasCameraCallback.success();
            return true;
        }
@@ -215,9 +215,7 @@ public class CameraCanvas extends CordovaPlugin{
 
 			if (requestCode == 2) 
 			{
-				this.canvasCameraCallback.success("test dta");
-
-		        /*if (intent == null)
+		        if (intent == null)
 		        {
 		        	canvasCameraCallback.sendPluginResult(new PluginResult(PluginResult.Status.ERROR, "Error: data is null"));
 		        }
@@ -231,7 +229,7 @@ public class CameraCanvas extends CordovaPlugin{
 	    	            }
 	    			});
 	        		
-		        }*/
+		        }
 			}
 		}
 		
