@@ -47,7 +47,7 @@ cordova.define("cordova/plugin/cameraPluginVar", function(require, exports, modu
         this.doOrientationChange();
     };
 
-  cameraPluginVar.doOrientationChange = function() { alert("here");
+  cameraPluginVar.doOrientationChange = function() { 
         switch(window.orientation)
         {
             case -90:

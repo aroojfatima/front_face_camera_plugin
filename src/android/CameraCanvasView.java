@@ -357,6 +357,7 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
                     m_prgDialog.dismiss();
                     
                     m_camera.startPreview();
+                    finish();
                     //new CameraCanvas().canvasCameraCallback.success(returnInfo);
                 }
             });
@@ -401,7 +402,7 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
             if(display.getRotation() == Surface.ROTATION_0 || display.getRotation() == 0)
             {
                 m_previewCameraRotationDegree = 0;
-                m_saveCameraRotationDegree = 270;
+                m_saveCameraRotationDegree = 90;
             }
             else if(display.getRotation() == Surface.ROTATION_90 || display.getRotation() == 3)
             {
