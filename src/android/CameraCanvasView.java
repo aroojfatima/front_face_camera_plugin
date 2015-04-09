@@ -348,7 +348,7 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
                         return;
                     }
 
-                    CameraCanvas.sharedCameraCanvas.onTakePicture(returnInfo);
+                    CameraCanvas.sharedCanvasCamera.onTakePicture(returnInfo);
                     
                     m_prgDialog.dismiss();
                     
