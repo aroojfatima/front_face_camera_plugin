@@ -94,6 +94,7 @@ public class CameraCanvas extends CordovaPlugin{
            
            return true;
        }
+       
        return false;
    }
 
@@ -198,15 +199,15 @@ public class CameraCanvas extends CordovaPlugin{
   
    public void onTakePicture(final JSONObject returnInfo)
 	{ Log.v(null, "in take picture ------------------------");
-		cordova.getThreadPool().execute(new Runnable() 
+		/*cordova.getThreadPool().execute(new Runnable() 
 		{
            public void run() 
-           {
+           { */
        		PluginResult result = new PluginResult(PluginResult.Status.OK, returnInfo);
        		result.setKeepCallback(true);
-       		canvasCameraCallback.success(returnInfo);
-           }
-		});
+       		this.canvasCameraCallback.success(returnInfo);
+         /*  }
+		});*/
 	}
    public void onActivityResult(int requestCode, int resultCode, Intent intent) 
 	{
