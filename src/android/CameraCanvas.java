@@ -1,9 +1,12 @@
 package com.cameraPlugin;
 
+import java.io.File;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
@@ -241,6 +244,24 @@ public class CameraCanvas extends CordovaPlugin{
     */
    public void failPicture(String err) {
        this.canvasCameraCallback.error(err);
+   }
+
+   public String getTempDirectoryPath() {
+       File cache = null;
+
+       // SD Card Mounted
+       if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+           cache = new File(Environment.getExternalStorageDirectory().getAbsolutePath() +
+                   "/Android/data/" + this.cordova.getActivity().getPackageName() + "/cache/");
+       }
+       // Use internal storage
+       else {
+           cache = cordova.getActivity().getCacheDir();
+       }
+
+       // Create the cache directory if it doesn't exist
+       cache.mkdirs();
+       return cache.getAbsolutePath();
    }
 
 }
