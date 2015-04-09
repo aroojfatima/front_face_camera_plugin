@@ -92,31 +92,39 @@ public class CameraCanvas extends CordovaPlugin{
            callbackContext.error("Expected one non-empty string argument.");
        }
    }
-   private void start(JSONArray args, CallbackContext callbackContext) {
-   	   _quality = 85;
-          _destType = DestinationTypeFileURI;
-          _encodeType = EncodingTypeJPEG;
-          _saveToPhotoAlbum = false;
-          _correctOrientation = true;
-          _width = 640;
-          _height = 480;
+   private void start(JSONArray args) {
+	   // init parameters - default values
+       _quality = 85;
+       _destType = DestinationTypeFileURI;
+       _encodeType = EncodingTypeJPEG;
+       _saveToPhotoAlbum = false;
+       _correctOrientation = true;
+       _width = 640;
+       _height = 480;
 
-          // parse options
-          if (args.length() > 0)
-          {
-              try {
-                  JSONObject jsonData = args.getJSONObject(0);
-                  getOptions(jsonData);
-              } catch (Exception e) {
-                  Log.d("CanvasCamera", "Parsing options error : " + e.getMessage());
-              }
-          }
-       if (args != null && args.length() > 0) {
-           callbackContext.success(args);
-       } else {
-           callbackContext.error("Expected one non-empty string argument.");
+       // parse options
+       if (args.length() > 0)
+       {
+           try {
+               JSONObject jsonData = args.getJSONObject(0);
+               getOptions(jsonData);
+           } catch (Exception e) {
+               Log.d("CanvasCamera", "Parsing options error : " + e.getMessage());
+           }
        }
-       Intent intent = new Intent(this.cordova.getActivity(), CameraCanvasView.class);
+       
+       SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(this.cordova.getActivity()).edit();
+       editor.putInt(QUALITY, _quality);
+       editor.putInt(DESTTYPE, _destType);
+       editor.putInt(ENCODETYPE, _encodeType);
+       editor.putBoolean(SAVETOPHOTOALBUM, _saveToPhotoAlbum);
+       editor.putBoolean(CORRECTORIENTATION, _correctOrientation);
+       editor.putInt(WIDTH, _width);
+       editor.putInt(HEIGHT, _height);
+       
+       editor.commit();
+       
+		Intent intent = new Intent(this.cordova.getActivity(), CameraCanvasView.class);
 		this.cordova.startActivityForResult(this, intent, CANVAS_CAMERA);
    }
    private void getOptions(JSONObject jsonData) throws Exception
@@ -187,6 +195,30 @@ public class CameraCanvas extends CordovaPlugin{
        		canvasCameraCallback.sendPluginResult(result);
            }
 		});
+	}
+   public void onActivityResult(int requestCode, int resultCode, Intent intent) 
+	{
+		if (resultCode == Activity.RESULT_OK) 
+		{
+			if (requestCode == CANVAS_CAMERA) 
+			{
+		        if (intent == null)
+		        {
+		        	canvasCameraCallback.sendPluginResult(new PluginResult(PluginResult.Status.ERROR, "Error: data is null"));
+		        }
+		        else
+		        {
+	        		cordova.getThreadPool().execute(new Runnable() 
+	        		{
+	    	            public void run() 
+	    	            {
+	    	        		canvasCameraCallback.success();
+	    	            }
+	    			});
+	        		
+		        }
+			}
+		}
 	}
 
 }
