@@ -97,7 +97,8 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
 
         bFlash = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean(CameraCanvas.FLASH, false);
         bRevert = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean(CameraCanvas.REVERT, false);
-        
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
         getControlVariables();
         initializeUI();
         setCameraRotationDegree();
@@ -475,7 +476,7 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
                     parameters.setFlashMode(Parameters.FLASH_MODE_OFF);
 
                 setCameraRotationDegree();
-                m_camera.setDisplayOrientation(m_previewCameraRotationDegree);
+                m_camera.setDisplayOrientation(0);
 
                 m_camera.setParameters(parameters);
 
