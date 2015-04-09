@@ -199,12 +199,12 @@ document.addEventListener('deviceready', function () {
 						
 			}
 			function onSuccess(data) {
-				alert("Data -----"+ data.orientation); //JSON.parse(data));
+				//alert("Data -----"+ data.orientation); //JSON.parse(data));
 				var smallImage = document.getElementById('smallImage');
 				smallImage.src = "data:image/jpeg;base64," +data.imageURI; // URI
 			}
 			function onFail(data) {
-				alert("Ohhhhhhh "+data);
+				alert("Ooooooops "+data);
 			}
 			function onTakePicture() {
 				alert("here in pic");
