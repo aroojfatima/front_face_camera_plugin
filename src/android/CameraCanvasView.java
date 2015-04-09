@@ -356,7 +356,7 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
                     
                     m_prgDialog.dismiss();
                     
-                    m_camera.startPreview();
+                    m_camera.stopPreview(); //.startPreview();
                 }
             });
         }
