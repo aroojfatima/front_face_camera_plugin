@@ -82,6 +82,10 @@ public class CameraCanvas extends CordovaPlugin{
            this.show(message, callbackContext);
            return true;
        }
+       else if (action.equals("start")) {
+           this.start(args);
+           return true;
+       }
        return false;
    }
 
