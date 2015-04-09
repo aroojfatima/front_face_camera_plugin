@@ -16,7 +16,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class CameraCanvas extends CordovaPlugin{
-		private CallbackContext canvasCameraCallback;
+		public CallbackContext canvasCameraCallback;
     
 		private static final int CANVAS_CAMERA = 2;   
 	
