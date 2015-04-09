@@ -300,9 +300,7 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
             m_camera.takePicture(null, null, new PictureCallback() {
                 public void onPictureTaken(byte[] data, Camera camera) {
                 	int rotate = 0;
-                	CameraCanvas cc= new CameraCanvas();
-                	// Create an ExifHelper to save the exif data that is lost during compression
-                	ExifHelper exif = new ExifHelper();
+                	
                 	try {
                         if (_encodeType == EncodingTypeJPEG) {
                             exif.createInFile(cc.getTempDirectoryPath() + "/.Pic.jpg");
@@ -505,7 +503,7 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
             bPreviewRunning = false;
         }
     }
-    private Bitmap getRotatedBitmap(int rotate, Bitmap bitmap, ExifHelper exif) {
+    public Bitmap getRotatedBitmap(int rotate, Bitmap bitmap, ExifHelper exif) {
         Matrix matrix = new Matrix();
         if (rotate == 180) {
             matrix.setRotate(rotate);
