@@ -77,6 +77,9 @@ public class CameraCanvas extends CordovaPlugin{
 
 	@Override
    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+	   CameraCanvas.sharedCanvasCamera = CameraCanvas.this;
+   		this.canvasCameraCallback = callbackContext;
+
        if (action.equals("show")) {
            String message = args.getString(0);
            this.show(message, callbackContext);

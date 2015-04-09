@@ -63,7 +63,7 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
 
     // options
     private int _quality = 85;
-    private int _destType = DestinationTypeFileURI;
+    private int _destType = DestinationTypeDataURL;
     private boolean _allowEdit = false;
     private int _encodeType = EncodingTypeJPEG;
     private boolean _saveToPhotoAlbum = false;
@@ -86,7 +86,7 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
         setContentView(getResources().getIdentifier("canvascamera", "layout", getPackageName()));
 
         _quality = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getInt(CameraCanvas.QUALITY , 85);
-        _destType = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getInt(CameraCanvas.DESTTYPE , DestinationTypeFileURI);
+        _destType = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getInt(CameraCanvas.DESTTYPE , DestinationTypeDataURL);
         _allowEdit = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean(CameraCanvas.ALLOWEDIT, false);
         _encodeType = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getInt(CameraCanvas.ENCODETYPE, EncodingTypeJPEG);
         _saveToPhotoAlbum = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean(CameraCanvas.SAVETOPHOTOALBUM, false);
@@ -314,13 +314,14 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
 
                     // save image to album
                     if (_saveToPhotoAlbum)
-                    {
+                    { 
+                    	Log.v(null,"Here in photo save " );
                         MediaStore.Images.Media.insertImage(getContentResolver(), original, "CameraCanvas", "Taked by CameraCanvas");
                     }
 
                     JSONObject returnInfo = new JSONObject();
                     try
-                    {
+                    { Log.v(null,"destination type " + _destType);
                         if (_destType == DestinationTypeFileURI)
                         {
                             String strPath = writeTakedImageDataToStorage(blob.toByteArray());
@@ -332,8 +333,9 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
                             byte[] retData = blob.toByteArray();
                             // base64 encoded string
                             String base64String = Base64.encodeToString(retData, Base64.NO_WRAP);
-
+                            
                             returnInfo.put("imageURI", base64String);
+                            //Log.v(null,"Return Info " + returnInfo);
                         }
 
                         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyymmddhhmmss");
@@ -345,8 +347,10 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
                     }
                     catch (JSONException ex)
                     {
-                        return;
+                        Log.v(null, "Exception occured"+ex.getMessage());
+                    	return;
                     }
+                    Log.v(null,"shared info " + CameraCanvas.sharedCanvasCamera);
 
                     CameraCanvas.sharedCanvasCamera.onTakePicture(returnInfo);
                     
