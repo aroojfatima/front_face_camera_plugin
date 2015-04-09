@@ -1,0 +1,18 @@
+{
+    "version": "1.0.0",
+    "name": "com.cameraPlugin",
+    "cordova_name": "CanvasCamera",
+    "description": "Canvas Camera",
+    "license": "Apache 2.0",
+    "repo": "",
+    "issue": "",
+    "keywords": [
+        "cordova",
+        "device"
+    ],
+    "platforms": [
+        "android",
+    ],
+    "engines": [],
+    "englishdoc": ""
+}
