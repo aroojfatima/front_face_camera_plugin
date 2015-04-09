@@ -35,8 +35,6 @@
 				<uses-feature android:name="android.hardware.camera.setParameters" />			
         </config-file>
 		<source-file src="src/android/CameraCanvas.java" target-dir="src/com/cameraPlugin/"/>
-		<source-file src="src/android/ExifHelper.java" target-dir="src/com/cameraPlugin/"/>
-		<source-file src="src/android/FileHelper.java" target-dir="src/com/cameraPlugin/"/>
 		<source-file src="src/android/CameraCanvasView.java" target-dir="src/com/cameraPlugin/"/>
 		<source-file src="src/android/res/drawable-hdpi/camera.png" target-dir="res/drawable-hdpi"/>
         <source-file src="src/android/res/drawable-hdpi/video_sprites_close.png" target-dir="res/drawable-hdpi"/>

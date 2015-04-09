@@ -71,9 +71,7 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
 
     private int _width = 200;
     private int _height = 180;
-    CameraCanvas cc= new CameraCanvas();
-	// Create an ExifHelper to save the exif data that is lost during compression
-	ExifHelper exif = new ExifHelper();
+
 
     Handler customHandler = new Handler();
 
@@ -299,14 +297,12 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
 
             m_camera.takePicture(null, null, new PictureCallback() {
                 public void onPictureTaken(byte[] data, Camera camera) {
-                	int rotate = 0;
-                	rotate = exif.getOrientation();
 
                     Bitmap original = BitmapFactory.decodeByteArray(data, 0, data.length);
 
                     //_correctOrientation
                     if (_correctOrientation)
-                        original = rotate(original, rotate);
+                        original = rotate(original, m_saveCameraRotationDegree);
 
                     // resize to width x height
                     Bitmap resized = Bitmap.createScaledBitmap(original, _width, _height, true);
@@ -421,7 +417,7 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
             else if(display.getRotation() == Surface.ROTATION_270 || display.getRotation() == 1)
             {
                 m_previewCameraRotationDegree = 270;
-                m_saveCameraRotationDegree = 270;
+                m_saveCameraRotationDegree = 90;
             }
         }
     }
