@@ -248,7 +248,7 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
 
 
             } catch (IOException e) {
-                e.printStackTrace();
+                //e.printStackTrace();
             }
         }
     };
@@ -438,7 +438,7 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
                 m_camera.setPreviewDisplay(m_surfaceHolder);
             } catch (IOException e)
             {
-                e.printStackTrace();
+                //e.printStackTrace();
             }
 
             bPreviewRunning = true;
