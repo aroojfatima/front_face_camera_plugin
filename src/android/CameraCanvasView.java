@@ -433,12 +433,12 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
             if (bRevert)
             {
                 m_camera = Camera.open(Camera.CameraInfo.CAMERA_FACING_FRONT);
-                m_imgRevert.setImageResource(getResources().getIdentifier("video_sprites_revert", "drawable", getPackageName()));
+                //m_imgRevert.setImageResource(getResources().getIdentifier("video_sprites_revert", "drawable", getPackageName()));
             }
             else
             {
                 m_camera = Camera.open(Camera.CameraInfo.CAMERA_FACING_FRONT);
-                m_imgRevert.setImageResource(getResources().getIdentifier("video_sprites_revert_inactive", "drawable", getPackageName()));
+               // m_imgRevert.setImageResource(getResources().getIdentifier("video_sprites_revert_inactive", "drawable", getPackageName()));
             }
 
             try

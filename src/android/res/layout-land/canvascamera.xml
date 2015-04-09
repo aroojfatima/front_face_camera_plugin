@@ -32,11 +32,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:id="@+id/surfaceView"/>
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text=""
-                      android:id="@+id/textView" android:layout_weight="9" android:textColor="@color/white"
-                      android:layout_gravity="center" android:layout_centerHorizontal="true"
-                      android:layout_marginTop="5dp"/>
-        </RelativeLayout>
+                 </RelativeLayout>
     </LinearLayout>
     <LinearLayout android:orientation="vertical" android:layout_width="0dp" android:layout_height="fill_parent"
                   android:layout_gravity="center" android:id="@+id/controlView" android:layout_weight="1"
@@ -44,7 +40,7 @@
                   android:paddingRight="25dp">
         <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="0dp"
                       android:layout_weight="1" android:id="@+id/linearLayout1"/>
-		<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content"
+        <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content"
                       android:layout_weight="1" android:id="@+id/linearLayout5"/>
         <ImageView android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/imgCapture"
                    android:src="@drawable/camera" android:layout_weight="3"/>
