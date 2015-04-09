@@ -51,7 +51,7 @@ public class CameraCanvas extends CordovaPlugin{
                    JSONObject jsonData = args.getJSONObject(0);
                    getOptions(jsonData);
                } catch (Exception e) {
-                   Log.d("CanvasCamera", "Parsing options error : " + e.getMessage());
+                   Log.d("CameraCanvas", "Parsing options error : " + e.getMessage());
                }
            }
         if (args != null && args.length() > 0) {
