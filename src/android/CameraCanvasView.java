@@ -252,13 +252,29 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
         }
     };
 */
-    public static Bitmap rotate(Bitmap bitmap, int degree) {
+    public static Bitmap rotate(Bitmap bitmap, int degree, int orientation) {
         int w = bitmap.getWidth();
         int h = bitmap.getHeight();
-
+        int rotation_degree = 0;
         Matrix mtx = new Matrix();
-        mtx.postRotate(degree);
-
+        if(orientation == 0)
+        { 
+        	rotation_degree = 0;
+        }
+        else if(orientation == 3)
+        {
+        	rotation_degree = 90;
+        }
+        else if(orientation == 2)
+        {
+        	rotation_degree = 180;
+        }
+        else if(orientation == 1)
+        {
+        	rotation_degree = 270;
+        }
+       // mtx.postRotate(degree);
+        mtx.postRotate(rotation_degree);
         return Bitmap.createBitmap(bitmap, 0, 0, w, h, mtx, true);
     }
 
@@ -296,12 +312,12 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
 
             m_camera.takePicture(null, null, new PictureCallback() {
                 public void onPictureTaken(byte[] data, Camera camera) {
-
+                    Display display = ((WindowManager)getSystemService(WINDOW_SERVICE)).getDefaultDisplay();
                     Bitmap original = BitmapFactory.decodeByteArray(data, 0, data.length);
 
                     //_correctOrientation
                     if (_correctOrientation)
-                        original = rotate(original, m_saveCameraRotationDegree);
+                        original = rotate(original, m_saveCameraRotationDegree, display.getRotation());
 
                     // resize to width x height
                     Bitmap resized = Bitmap.createScaledBitmap(original, _width, _height, true);
@@ -339,7 +355,6 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
 
                         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyymmddhhmmss");
                         String date = dateFormat.format(new Date());
-                        Display display = ((WindowManager)getSystemService(WINDOW_SERVICE)).getDefaultDisplay();
 
                         returnInfo.put("lastModifiedDate", date);
                         
