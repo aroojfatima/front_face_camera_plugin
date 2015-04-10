@@ -20,7 +20,7 @@ cordova.define("cordova/plugin/cameraPluginVar", function(require, exports, modu
 
         this._camImage.onload = function() {
             _this._context.clearRect(0, 0, _this._width, _this._height);
-            if (window.orientation == 90
+          /*  if (window.orientation == 90
                || window.orientation == -90)
             {
                 _this._context.save();
@@ -40,11 +40,11 @@ cordova.define("cordova/plugin/cameraPluginVar", function(require, exports, modu
                 _this._context.drawImage(_this._camImage, 0, 0, 352, 288, -_this._height/2, -_this._width/2, _this._height, _this._width);
                 //
                 _this._context.restore();
-            }
+            } */
         };
         // register orientation change event
-        window.addEventListener('orientationchange', this.doOrientationChange);
-        this.doOrientationChange();
+      /*  window.addEventListener('orientationchange', this.doOrientationChange);
+        this.doOrientationChange(); */
     };
 
   cameraPluginVar.doOrientationChange = function() { 
