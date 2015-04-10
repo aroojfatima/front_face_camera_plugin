@@ -267,14 +267,14 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
         }
         else if(orientation == 2)
         {
-        	rotation_degree = 0;
+        	rotation_degree = 180;
         }
         else if(orientation == 1)
         {
-        	rotation_degree = 90;
+        	rotation_degree = 270;
         }
+        mtx.postRotate(degree);
        // mtx.postRotate(degree);
-        mtx.postRotate(rotation_degree);
         return Bitmap.createBitmap(bitmap, 0, 0, w, h, mtx, true);
     }
 
@@ -316,7 +316,7 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
                     Bitmap original = BitmapFactory.decodeByteArray(data, 0, data.length);
 
                     //_correctOrientation
-                    if (_correctOrientation)
+                   // if (_correctOrientation)
                         original = rotate(original, m_saveCameraRotationDegree, display.getRotation());
 
                     // resize to width x height
@@ -419,22 +419,22 @@ public class CameraCanvasView extends Activity implements SurfaceHolder.Callback
             if(display.getRotation() == 0)
             { Log.v(null,"hereeeee--------------------in 0--"+display.getRotation());
                 m_previewCameraRotationDegree = 0;
-                //m_saveCameraRotationDegree = 0;
+                m_saveCameraRotationDegree = 0;
             }
             else if(display.getRotation() == 3)
             { Log.v(null,"hereeeee------------in 3----------"+display.getRotation());
                 m_previewCameraRotationDegree = 90;
-               // m_saveCameraRotationDegree = 90;
+                m_saveCameraRotationDegree = 270;
             }
             else if(display.getRotation() == 2)
             { Log.v(null,"hereeeee--------in 2 --------------"+display.getRotation());
                 m_previewCameraRotationDegree = 180;
-                //m_saveCameraRotationDegree = 180;
+                m_saveCameraRotationDegree = 180;
             }
             else if(display.getRotation() == 1)
             { Log.v(null,"hereeeee---------------------in 1-"+display.getRotation());
             	m_previewCameraRotationDegree = 270;
-               // m_saveCameraRotationDegree = 180;
+                m_saveCameraRotationDegree = 180;
             }
         }
     }
