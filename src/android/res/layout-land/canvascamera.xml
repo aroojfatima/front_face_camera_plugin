@@ -42,12 +42,12 @@
                       android:layout_weight="1" android:id="@+id/linearLayout1"/>
         <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content"
                       android:layout_weight="1" android:id="@+id/linearLayout5"/>
-        <ImageView android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/imgCapture"
-                   android:src="@drawable/camera" android:layout_weight="3"/>
+        <ImageView android:layout_width="96dp" android:layout_height="96dp"  android:id="@+id/imgCapture"
+                   android:src="@drawable/camera" />
         <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content"
                       android:layout_weight="1" android:id="@+id/linearLayout6"/>
-        <ImageView android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/imgClose"
-                   android:src="@drawable/video_sprites_close" android:layout_weight="3"/>
+        <ImageView android:layout_width="96dp" android:layout_height="96dp"  android:id="@+id/imgClose"
+                   android:src="@drawable/video_sprites_close" />
         <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content"
                       android:layout_weight="1" android:id="@+id/linearLayout2"/>
     </LinearLayout>
