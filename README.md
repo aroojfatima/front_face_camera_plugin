@@ -27,7 +27,7 @@ The plugin need to be installed using CLI.
 Through the [Command-line Interface][CLI]:
 ```bash
 # ~~ from master ~~
-cordova plugin add https://github.com/aroojfatima/test.git
+cordova plugin add https://github.com/aroojfatima/front_face_camera_plugin.git
 ```
 
 ### Removing the Plugin from your project
